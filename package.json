@@ -1,0 +1,30 @@
+{
+  "name": "fis-parser-rem",
+  "description": "fis px自动转化成rem插件",
+  "version": "0.0.1",
+  "keywords": [
+    "fis",
+    "css",
+    "rem"
+  ],
+  "site": "https://github.com/imweb/fis-parser-rem",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/imweb/fis-parser-rem"
+  },
+  "bugs": {
+    "url": "https://github.com/imweb/fis-parser-rem/issues"
+  },
+  "author": {
+    "name": "Fishine Yuan",
+    "email": "382184760@qq.com"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {}
+}
