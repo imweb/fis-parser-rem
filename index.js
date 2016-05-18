@@ -29,7 +29,7 @@ var entry = module.exports = function(content, file, conf){
             && !cmt.match(/@norem\b/) 
                 || cmt.match(/@rem\b/)
         ) {
-            return str.replace(/\b(\d+)px\b/g, function(s, px) {
+            return str.replace(/\b([\d\.]+)px\b/g, function(s, px) {
                 px = +px;
                 if (px >= conf.min) {
                     return (px / conf.rem + 0.0001).toFixed(4) + 'rem';
