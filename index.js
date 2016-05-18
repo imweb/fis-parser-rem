@@ -1,3 +1,7 @@
+/**
+ * @file fis-parse-rem
+ */
+
 'use strict';
 
 var prefix = ['-webkit-', '-ms-'],
@@ -48,4 +52,3 @@ entry.defaultOptions = {
 
     exclude: ['width', 'height', 'background', 'background-size'] // 忽略的样式
 };
-
