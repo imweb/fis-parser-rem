@@ -1,6 +1,10 @@
+/**
+ * @file fis-parse-rem
+ */
+
 'use strict';
 
-var prefix = ['-webkit-', '-ms-'],
+var prefix = ['-webkit-', '-ms-', '-moz-', '-o-'],
     styleExpr = new RegExp(
         [
             '[\\s{](' + prefix.join('|') + ')?',
@@ -21,6 +25,8 @@ var entry = module.exports = function(content, file, conf){
         // ignore file
         return content;
     }
+
+    content = content.replace(/\/\*{1,2}[\s\S]*?\*\//g, '');
 
     return content.replace(styleExpr, function(str, prefix, name, v, s1, cmt) {
         prefix = prefix || '';
@@ -48,4 +54,3 @@ entry.defaultOptions = {
 
     exclude: ['width', 'height', 'background', 'background-size'] // 忽略的样式
 };
-
