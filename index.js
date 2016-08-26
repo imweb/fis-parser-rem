@@ -1,19 +1,8 @@
-/**
- * @file fis-parse-rem
- */
-
 'use strict';
 
-var prefix = ['-webkit-', '-ms-', '-moz-', '-o-'],
-    styleExpr = new RegExp(
-        [
-            '[\\s{](' + prefix.join('|') + ')?',
-            '([\\w\\-]+)',
-            '[ \\t]*:[ \\t]*(([^;"\\n]+|"[^"\\n]*")+)',
-            ';(\\s*/\\*[^/]*\\*/)?'
-        ].join(''), 
-        'g'
-    );
+// standard example, require character ; after each line 
+// style: attr; /* norem */
+var styleExpr = /[\s{](-webkit-|-ms-|-moz-|-o-)?([\w\-]+?)\s*?:\s*?[^{;]+?;(\s*?\/\*[^\/]*?\*\/)?/g;
 
 var entry = module.exports = function(content, file, conf){
     var excludeMap = {};
@@ -25,10 +14,7 @@ var entry = module.exports = function(content, file, conf){
         // ignore file
         return content;
     }
-
-    content = content.replace(/\/\*{1,2}[\s\S]*?\*\//g, '');
-
-    return content.replace(styleExpr, function(str, prefix, name, v, s1, cmt) {
+    return content.replace(styleExpr, function(str, prefix, name, cmt) {
         prefix = prefix || '';
         cmt = cmt || '';
         if (!excludeMap[name] && !excludeMap[prefix + name] 
@@ -54,3 +40,4 @@ entry.defaultOptions = {
 
     exclude: ['width', 'height', 'background', 'background-size'] // 忽略的样式
 };
+
